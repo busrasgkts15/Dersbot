@@ -1,0 +1,14 @@
+.env*
+.env
+
+#Kendi notlarımı açık olarak paylaşmamak için yalnızca işletim sistemleri dersine ait bir pdf örnek olarak ekledim
+
+algoritma_analizi
+mikroişlemciler
+sayisal_analiz
+
+
+venv/
+.venv
+
+data_images
