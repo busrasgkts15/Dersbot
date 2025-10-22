@@ -6,10 +6,11 @@
 algoritma_analizi
 mikroişlemciler
 sayisal_analiz
-işletim_sistemleri
+
 
 venv/
 .venv
+
 
 chroma_db/
 
@@ -18,4 +19,8 @@ data_images
 data/işletim_sistemleri/hw6.pdf
 
 data_runtime/
+
+
+data_images
+
 
