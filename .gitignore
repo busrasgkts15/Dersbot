@@ -11,6 +11,8 @@ işletim_sistemleri
 venv/
 .venv
 
+chroma_db/
+
 
 data_images
 data/işletim_sistemleri/hw6.pdf
