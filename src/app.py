@@ -286,7 +286,7 @@ llm = ChatGoogleGenerativeAI(
 prompt_template = """
 Aşağıdaki bağlama göre soruyu yanıtla. Akademik ama sade bir dil kullan.
 Eğer bağlamda bilgi yoksa kullanıcıya samimi bir şekilde bunu belirt. Sadece bağlamdaki bilgiye göre yanıt ver.
-Kullanıcıya notlar şeklinde bahset.
+Kullanıcıya notlar şeklinde bahset. Bağlam deme kullanıcıya notlar şeklinde bahset.
 
 Bağlam:
 {context}
