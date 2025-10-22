@@ -32,7 +32,7 @@ DersBot, klasik RAG hattının tüm bileşenlerini uygular:
 
 ### 4. 🗂️ Vektör Veritabanı (Vector Store)
 - Vektörler, **Chroma** veritabanında saklanır.
-- Tüm dersler tek bir birleşik dizinde tutulur:
+- Tüm dersler tek bir birleşik dizinde tutulur
 
 
 ### 5. 🔍 Bilgi Getirme (Context Retrieval)
@@ -42,8 +42,7 @@ DersBot, klasik RAG hattının tüm bileşenlerini uygular:
 
 ### 6. 🧾 Yanıt Üretimi (Response Generation)
 - Seçilen bağlam, **Gemini 2.5 Flash** modeliyle analiz edilir.
-- Prompt sistemi sayesinde:
-- Akademik ama sade bir dil kullanılır.
+- Prompt sistemi sayesinde akademik ama sade bir dil kullanılır.
 - “Bağlam” yerine **notlar** formatında cevap oluşturulur.
 - Yanıtlar gerçek zamanlı olarak Streamlit arayüzünde gösterilir.
 
@@ -55,14 +54,9 @@ DersBot, klasik RAG hattının tüm bileşenlerini uygular:
 - **Renkli placeholder’lar ve yumuşak gölgelendirme**
 - **Ders seçimi:** Sayısal Analiz, Algoritma Analizi, Mikroişlemciler, İşletim Sistemleri
 - **Dinamik örnek sorular:** Her ders için hazır soru butonları
-- **Cevap kutuları:** Sabit boyutlu, gölgeli “baloncuk” görünümü
 - **Anlık cevaplama:** Gemini Flash API ile hızlı yanıt üretimi
 
 <img src="https://github.com/user-attachments/assets/03a81b9d-derbot-ui-preview.png" width="750">
-
-## 📚 Veri İşleme Akışı
-➡️ `ingest_all.py` bu PDF’leri işler, metinleri parçalara ayırır ve embedding işlemi sonrası  
-tek bir Chroma veritabanına kaydeder:  
 
 
 ---
@@ -84,8 +78,6 @@ tek bir Chroma veritabanına kaydeder:
 ---
 
 
----
-
 ## ⚡ Kurulum ve Çalıştırma
 
 ### 1. Depoyu klonla
@@ -95,8 +87,15 @@ cd DersBot
 python -m venv .venv
 source .venv/bin/activate    # Mac/Linux
 .venv\Scripts\activate       # Windows
-````
 pip install -r requirements.txt
 
 GOOGLE_API_KEY=your_gemini_api_key
+
+python3 ingest_all.py
+
+streamlit run local_app.py
+
+````
+### Projeyi Başlat
+http://localhost:8501
 
