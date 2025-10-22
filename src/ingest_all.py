@@ -6,9 +6,9 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
 # --- Yol ayarları ---
-DATA_ROOT = "../data"
+DATA_ROOT = "data"
 # TEK BİR VERİTABANI DİZİNİ TANIMLIYORUZ
-SINGLE_DB_PATH = "../chroma_db/all_courses_db"
+SINGLE_DB_PATH = "chroma_db/all_courses_db"
 
 # --- Embedding modeli ---
 embedding_function = HuggingFaceEmbeddings(
