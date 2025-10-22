@@ -13,6 +13,11 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr \
  && rm -rf /var/lib/apt/lists/*
 
+ RUN mkdir -p /data && chmod -R 777 /data
+ENV TRANSFORMERS_CACHE=/data/cache
+ENV HF_HOME=/data/cache
+
+
 # Gereken dosyaları kopyala
 COPY requirements.txt .
 COPY src/ ./src/

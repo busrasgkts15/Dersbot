@@ -18,7 +18,7 @@ if not api_key:
     st.stop()
 
 # --- Chroma DB Ayarı (ingest_all.py ile aynı olmalı) ---
-SINGLE_DB_PATH = "../chroma_db/all_courses_db"
+SINGLE_DB_PATH = "../data/chroma_db/all_courses_db"
 
 # --- Sayfa Ayarları ---
 st.set_page_config(page_title="📘 DersBot", page_icon="🤖", layout="centered")
