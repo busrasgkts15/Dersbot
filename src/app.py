@@ -230,54 +230,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- Gelişmiş Input Alanı (Modern Stil ile) ---
-st.markdown(
-    """
-<style>
-.input-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem auto;
-    max-width: 700px;
-}
-.custom-input {
-    width: 100%;
-    font-size: 1.1em;
-    padding: 1.1rem 1.4rem;
-    border-radius: 12px;
-    border: 1px solid #d1d5db; /* Açık gri çerçeve */
-    background-color: #ffffff;
-    color: #111827; /* Yazı rengi (koyu) */
-    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-    outline: none;
-    transition: all 0.2s ease;
-}
-.custom-input::placeholder {
-    color: #9ca3af; /* Gri placeholder */
-}
-.custom-input:focus {
-    border-color: #2563eb; /* Mavi kenarlık */
-    box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
-}
-</style>
-<div class="input-container">
-    <input 
-        type="text" 
-        id="custom_query_input" 
-        class="custom-input"
-        placeholder="💭 Şu anda seçili derse göre soru sorun..."
-    />
-</div>
-<script>
-const inputEl = document.getElementById("custom_query_input");
-inputEl.addEventListener("change", (e) => {
-    window.parent.postMessage({ type: "streamlit:setComponentValue", value: e.target.value }, "*");
-});
-</script>
-""",
-    unsafe_allow_html=True,
-)
-
 
 # Ders Seçimi Yönetimi
 if "selected_lesson" not in st.session_state:
