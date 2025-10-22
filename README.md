@@ -64,7 +64,7 @@ DersBot, klasik RAG hattının tüm bileşenlerini uygular:
 - **Dinamik örnek sorular:** Her ders için hazır soru butonları
 - **Anlık cevaplama:** Gemini Flash API ile hızlı yanıt üretimi
 
-<img src="https://github.com/user-attachments/assets/03a81b9d-derbot-ui-preview.png" width="750">
+<img src="/assets/ekrangörüntüsü.png" width="750">
 
 
 ---
