@@ -1,20 +1,30 @@
-FROM python:3.13.5-slim
+# Hugging Face build ortamı için Python 3.11 kullan
+FROM python:3.11-slim
 
+# Çalışma dizini
 WORKDIR /app
 
+# Gerekli sistem bağımlılıklarını yükle
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     git \
-    && rm -rf /var/lib/apt/lists/*
+    poppler-utils \
+    tesseract-ocr \
+ && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt ./
+# Gereken dosyaları kopyala
+COPY requirements.txt .
 COPY src/ ./src/
 
-RUN pip3 install -r requirements.txt
+# Python paketlerini yükle
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Streamlit portu
 EXPOSE 8501
 
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+# Sağlık kontrolü
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
 
-ENTRYPOINT ["streamlit", "run", "src/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Uygulama çalıştırma komutu
+CMD ["streamlit", "run", "src/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
