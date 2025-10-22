@@ -4,6 +4,27 @@ from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
+
+import os
+
+# Hugging Face ortamında mıyız? (çevresel değişkenle anla)
+if os.environ.get("HF_SPACE_ID"):
+    base_data_dir = "/data"
+else:
+    base_data_dir = "./data_runtime"  # local ortam için alternatif dizin
+
+# Cache ve database klasörlerini oluştur
+os.makedirs(f"{base_data_dir}/cache", exist_ok=True)
+os.makedirs(f"{base_data_dir}/chroma_db", exist_ok=True)
+
+# Ortam değişkenleri
+os.environ["HF_HOME"] = f"{base_data_dir}/cache"
+os.environ["TRANSFORMERS_CACHE"] = f"{base_data_dir}/cache"
+
+# LangChain / Chroma kullanımı için path ayarı
+persist_directory = f"{base_data_dir}/chroma_db"
+
+
 # --- Yol ayarları ---
 DATA_ROOT = "../data"
 # TEK BİR VERİTABANI DİZİNİ TANIMLIYORUZ
