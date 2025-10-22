@@ -1,10 +1,10 @@
 # 🎓 DersBot AI Asistan
 
-**DersBot AI**, öğrencilerin akademik notları, sunumları ve ders kitaplarını kullanarak bilgiye hızlı erişim sağlayan  
+**DersBot AI**, kendi eğitim hayatım boyunca derslerde tutmuş olduğum notlarda yer alan bilgileri kullanarak bilgiye hızlı erişim sağlayan
 **RAG (Retrieval-Augmented Generation)** tabanlı bir yapay zekâ destekli ders asistanıdır.
 
-Bu proje, PDF formatındaki ders içeriklerini analiz ederek  
-kullanıcının doğal dilde sorduğu sorulara **not bazlı, sade ve güvenilir** yanıtlar verir.  
+Bu proje,Gitbookda oluşturmuş olduğum ders içeriklerini PDF formatında analiz ederek
+kullanıcının doğal dilde sorduğu sorulara **not bazlı, sade ve güvenilir** yanıtlar verir.
 Modern bir **Streamlit** arayüzüyle sunulur ve tam anlamıyla **LLM + Embedding + Vector DB** entegrasyonu içerir.
 
 ---
