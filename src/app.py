@@ -9,13 +9,17 @@ from langchain.prompts import PromptTemplate
 import os.path
 
 
-# Hugging Face ortamında mıyız? (çevresel değişkenle anla)
-if os.environ.get("HF_SPACE_ID"):
+# Hugging Face ortamı mı?
+is_huggingface = any(
+    env_var in os.environ for env_var in ["SPACE_ID", "HF_SPACE_ID", "HF_HOME"]
+)
+
+if is_huggingface:
     base_data_dir = "/data"
 else:
-    base_data_dir = "./data_runtime"  # local ortam için alternatif dizin
+    base_data_dir = "./data_runtime"  # sadece local testte
 
-# Cache ve database klasörlerini oluştur
+# Klasörleri oluştur
 os.makedirs(f"{base_data_dir}/cache", exist_ok=True)
 os.makedirs(f"{base_data_dir}/chroma_db", exist_ok=True)
 
@@ -23,8 +27,9 @@ os.makedirs(f"{base_data_dir}/chroma_db", exist_ok=True)
 os.environ["HF_HOME"] = f"{base_data_dir}/cache"
 os.environ["TRANSFORMERS_CACHE"] = f"{base_data_dir}/cache"
 
-# LangChain / Chroma kullanımı için path ayarı
+# LangChain / Chroma yolları
 persist_directory = f"{base_data_dir}/chroma_db"
+
 
 # --- Ortam Değişkenleri ---
 # Load GOOGLE_API_KEY from .env file
