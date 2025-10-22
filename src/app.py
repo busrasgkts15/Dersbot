@@ -334,7 +334,8 @@ else:
     example_queries = [
         "Bu ders nedir?",
         "Ana konular nelerdir?",
-        "Önemli formüller nelerdir?",
+        "Önemli formüller nelerdir ?",
+        "Önemli formüller nelerdir ?",
     ]
 
 # Örnek Sorular Görseldeki gibi alt alta listeleniyor
