@@ -8,27 +8,25 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 import os.path
 
+import subprocess
 
-# Hugging Face ortamı mı?
-is_huggingface = any(
-    env_var in os.environ for env_var in ["SPACE_ID", "HF_SPACE_ID", "HF_HOME"]
-)
+# Eğer chroma veritabanı yoksa kullanıcıya oluşturma seçeneği sun
+if not os.path.exists("../chroma_db/all_courses_db"):
+    st.warning("❌ Database not found. Please create it before using the app.")
 
-if is_huggingface:
-    base_data_dir = "/data"
-else:
-    base_data_dir = "./data_runtime"  # sadece local testte
-
-# Klasörleri oluştur
-os.makedirs(f"{base_data_dir}/cache", exist_ok=True)
-os.makedirs(f"{base_data_dir}/chroma_db", exist_ok=True)
-
-# Ortam değişkenleri
-os.environ["HF_HOME"] = f"{base_data_dir}/cache"
-os.environ["TRANSFORMERS_CACHE"] = f"{base_data_dir}/cache"
-
-# LangChain / Chroma yolları
-persist_directory = f"{base_data_dir}/chroma_db"
+    if st.button("🧠 Veritabanını oluştur"):
+        with st.spinner(
+            "Veritabanı oluşturuluyor... Bu işlem birkaç dakika sürebilir ⏳"
+        ):
+            try:
+                # ingest.py dosyasını çalıştır
+                subprocess.run(["python", "src/ingest_all.py"], check=True)
+                st.success(
+                    "✅ Veritabanı başarıyla oluşturuldu! Şimdi uygulamayı yeniden başlatabilirsiniz."
+                )
+            except subprocess.CalledProcessError as e:
+                st.error(f"⚠️ Veritabanı oluşturulamadı: {e}")
+        st.stop()  # App'i durdur, kullanıcı yeniden başlatsın
 
 
 # --- Ortam Değişkenleri ---
@@ -42,7 +40,7 @@ if not api_key:
     st.stop()
 
 # --- Chroma DB Ayarı (ingest_all.py ile aynı olmalı) ---
-SINGLE_DB_PATH = "../data/chroma_db/all_courses_db"
+SINGLE_DB_PATH = "../chroma_db/all_courses_db"
 
 # --- Sayfa Ayarları ---
 st.set_page_config(

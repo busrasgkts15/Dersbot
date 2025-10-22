@@ -5,32 +5,10 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
-# Hugging Face ortamı mı?
-is_huggingface = any(
-    env_var in os.environ for env_var in ["SPACE_ID", "HF_SPACE_ID", "HF_HOME"]
-)
-
-if is_huggingface:
-    base_data_dir = "/data"
-else:
-    base_data_dir = "./data_runtime"  # sadece local testte
-
-# Klasörleri oluştur
-os.makedirs(f"{base_data_dir}/cache", exist_ok=True)
-os.makedirs(f"{base_data_dir}/chroma_db", exist_ok=True)
-
-# Ortam değişkenleri
-os.environ["HF_HOME"] = f"{base_data_dir}/cache"
-os.environ["TRANSFORMERS_CACHE"] = f"{base_data_dir}/cache"
-
-# LangChain / Chroma yolları
-persist_directory = f"{base_data_dir}/chroma_db"
-
-
 # --- Yol ayarları ---
 DATA_ROOT = "../data"
 # TEK BİR VERİTABANI DİZİNİ TANIMLIYORUZ
-SINGLE_DB_PATH = "../data/chroma_db/all_courses_db"
+SINGLE_DB_PATH = "../chroma_db/all_courses_db"
 
 # --- Embedding modeli ---
 embedding_function = HuggingFaceEmbeddings(
