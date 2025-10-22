@@ -12,3 +12,5 @@ venv/
 .venv
 
 data_images
+
+chroma_db/
