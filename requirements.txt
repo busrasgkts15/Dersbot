@@ -1,0 +1,28 @@
+# --- Çekirdek Kütüphaneler ---
+streamlit==1.38.0
+python-dotenv==1.0.1
+
+# --- LangChain Ekosistemi ---
+langchain==0.2.16
+langchain-community==0.2.7
+langchain-core==0.2.40
+langchain-google-genai==1.0.8
+
+# --- Embedding & Vector Store ---
+sentence-transformers==2.2.2
+huggingface-hub==0.19.4
+chromadb==0.5.3
+
+# --- PDF ve Görsel İşleme ---
+pypdf==4.3.1
+pytesseract==0.3.13
+pdf2image==1.17.0
+Pillow==10.2.0
+
+# Hugging Face Space → “Configuration” → “System packages” kısmına ekle:
+#poppler-utils
+
+
+# --- Yardımcı Kütüphaneler ---
+tqdm==4.66.4
+numpy==1.26.4
