@@ -20,7 +20,13 @@ if not os.path.exists("../chroma_db/all_courses_db"):
         ):
             try:
                 # ingest.py dosyasını çalıştır
-                subprocess.run(["python", "src/ingest_all.py"], check=True)
+                subprocess.run(
+                    [
+                        "python",
+                        os.path.join(os.path.dirname(__file__), "ingest_all.py"),
+                    ],
+                    check=True,
+                )
                 st.success(
                     "✅ Veritabanı başarıyla oluşturuldu! Şimdi uygulamayı yeniden başlatabilirsiniz."
                 )
