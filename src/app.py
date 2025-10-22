@@ -221,7 +221,6 @@ st.markdown(
         📘
     </div>
     <div class="app-name">DersBot AI Asistan</div>
-    <div class="app-slogan">Sınav notlarından, sunumlardan ve ders kitaplarından anında bilgi alın.</div>
     <div class="app-info">
         ⚠️ **Önemli Bilgilendirme:** DersBot, yüklenmiş akademik notlarınız, sunumlarınız ve kitaplarınız kullanılarak oluşturulmuştur. 
         Yanıtların doğruluğunu her zaman kendi kaynaklarınızdan kontrol etmeniz önerilir.
@@ -230,6 +229,55 @@ st.markdown(
 """,
     unsafe_allow_html=True,
 )
+
+# --- Gelişmiş Input Alanı (Modern Stil ile) ---
+st.markdown(
+    """
+<style>
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+    max-width: 700px;
+}
+.custom-input {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 1.1rem 1.4rem;
+    border-radius: 12px;
+    border: 1px solid #d1d5db; /* Açık gri çerçeve */
+    background-color: #ffffff;
+    color: #111827; /* Yazı rengi (koyu) */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    outline: none;
+    transition: all 0.2s ease;
+}
+.custom-input::placeholder {
+    color: #9ca3af; /* Gri placeholder */
+}
+.custom-input:focus {
+    border-color: #2563eb; /* Mavi kenarlık */
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+}
+</style>
+<div class="input-container">
+    <input 
+        type="text" 
+        id="custom_query_input" 
+        class="custom-input"
+        placeholder="💭 Şu anda seçili derse göre soru sorun..."
+    />
+</div>
+<script>
+const inputEl = document.getElementById("custom_query_input");
+inputEl.addEventListener("change", (e) => {
+    window.parent.postMessage({ type: "streamlit:setComponentValue", value: e.target.value }, "*");
+});
+</script>
+""",
+    unsafe_allow_html=True,
+)
+
 
 # Ders Seçimi Yönetimi
 if "selected_lesson" not in st.session_state:
@@ -317,11 +365,36 @@ if "query" not in st.session_state:
 
 # Input field - Görseldeki gibi sadeleştirildi
 query_input = st.text_input(
-    "Ask a question...",
-    placeholder="Şu anda seçili derse göre soru sorun...",
+    "",
+    placeholder="💭 Şu anda seçili derse göre soru sorun...",
     label_visibility="collapsed",
     value=st.session_state.query,
     key="user_query_input_field",
+)
+
+st.markdown(
+    """
+<style>
+div[data-testid="stTextInput"] input {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 12px !important;
+    padding: 1.1rem 1.4rem !important;
+    font-size: 1.1em !important;
+    color: #111827 !important;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+div[data-testid="stTextInput"] input::placeholder {
+    color: #9ca3af !important;
+}
+div[data-testid="stTextInput"] > div:focus-within {
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.25), 0 3px 10px rgba(0,0,0,0.05);
+    border-color: #2563eb !important;
+}
+</style>
+""",
+    unsafe_allow_html=True,
 )
 
 # --- Example Question Buttons ---
