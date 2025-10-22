@@ -15,6 +15,22 @@ st.set_page_config(
     page_title="📘 DersBot AI Asistan", page_icon="🤖", layout="centered"
 )
 
+# if st.button("🧠 Veritabanını oluştur"):
+#     try:
+#         result = subprocess.run(
+#             [sys.executable, "src/ingest_all.py"],
+#             check=True,
+#             capture_output=True,
+#             text=True,
+#             cwd=os.getcwd(),  # ekledik!
+#         )
+#         st.success("✅ Veritabanı başarıyla oluşturuldu!")
+#         st.text(result.stdout)
+#     except subprocess.CalledProcessError as e:
+#         st.error(f"⚠️ Veritabanı oluşturulamadı! Hata kodu: {e.returncode}")
+#         st.code(e.stderr)
+
+
 # --- Ortam Değişkenleri ---
 # Load GOOGLE_API_KEY from .env file
 load_dotenv()
@@ -26,7 +42,6 @@ if not api_key:
     st.stop()
 
 # --- Chroma DB Ayarı (ingest_all.py ile aynı olmalı) ---
-# Yolun önceki oturumlardaki gibi üst dizine referans verdiğinden emin olmak için düzeltildi.
 SINGLE_DB_PATH = "chroma_db/all_courses_db"
 
 
@@ -88,22 +103,14 @@ div[data-testid="stTextInput"] > div {
 div[data-testid="stTextInput"] > div:focus-within {
     box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2), 0 0 0 2px #2563eb; /* Odaklandığında mavi gölge */
 }
-
-/* YAZI DÜZELTME: Input alanındaki metin rengini siyah (okunur) yapıyoruz */
 div[data-testid="stTextInput"] input {
     flex-grow: 1; /* Input alanının çoğunu kapla */
     font-size: 1.1em;
     padding: 1.1rem 1.5rem; /* Daha kalın input */
-    color: #1a1a1a !important; /* Metin rengi kesinlikle siyah/koyu olsun */
-    background-color: transparent; 
+    color: #1a1a1a;
+    background-color: transparent; /* Beyaz arkaplanı üstten alsın */
     border: none !important;
 }
-
-/* YAZI DÜZELTME: Placeholder metin rengini daha açık gri (okunur) yapıyoruz */
-div[data-testid="stTextInput"] input::placeholder {
-    color: #9ca3af !important; /* Açık gri tonu, arka plandan daha belirgin */
-}
-
 
 /* 4. Örnek Soru Butonları */
 .example-question-btn-container {
@@ -242,17 +249,11 @@ try:
         st.stop()
 
     # 3. Load Database (READ ONLY)
-    # read_only=True eklenerek Hugging Face Spaces'teki izin sorunu çözülür
-    db = Chroma(
-        persist_directory=db_path,
-        embedding_function=embeddings,
-        client_settings={"allow_reset": False},
-        read_only=True,  # İzin hatası çözümü için eklenen kısım
-    )
+    db = Chroma(persist_directory=db_path, embedding_function=embeddings)
     retriever = db.as_retriever()
 
 except Exception as e:
-    st.error(f"❌ Veritabanı yüklenirken beklenmedik bir hata oluştu: {e}")
+    st.error(f"❌ An unexpected error occurred while loading the database: {e}")
     st.stop()
 
 # --- LLM and Prompt Settings ---
