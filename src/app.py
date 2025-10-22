@@ -103,14 +103,21 @@ div[data-testid="stTextInput"] > div {
 div[data-testid="stTextInput"] > div:focus-within {
     box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2), 0 0 0 2px #2563eb; /* Odaklandığında mavi gölge */
 }
+
+/* YAZI VE PLACEHOLDER DÜZELTME KISMI */
 div[data-testid="stTextInput"] input {
     flex-grow: 1; /* Input alanının çoğunu kapla */
     font-size: 1.1em;
     padding: 1.1rem 1.5rem; /* Daha kalın input */
-    color: #1a1a1a;
+    color: #1a1a1a !important; /* Metin rengini kesinlikle siyah/koyu yap */
     background-color: transparent; /* Beyaz arkaplanı üstten alsın */
     border: none !important;
 }
+/* Placeholder metin rengini daha belirgin gri yap */
+div[data-testid="stTextInput"] input::placeholder {
+    color: #9ca3af !important; 
+}
+
 
 /* 4. Örnek Soru Butonları */
 .example-question-btn-container {
