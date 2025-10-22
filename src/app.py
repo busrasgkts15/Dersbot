@@ -10,6 +10,11 @@ import os.path
 
 import subprocess
 
+# --- Sayfa Ayarları ---
+st.set_page_config(
+    page_title="📘 DersBot AI Asistan", page_icon="🤖", layout="centered"
+)
+
 # Eğer chroma veritabanı yoksa kullanıcıya oluşturma seçeneği sun
 if not os.path.exists("../chroma_db/all_courses_db"):
     st.warning("❌ Database not found. Please create it before using the app.")
@@ -44,10 +49,6 @@ if not api_key:
 # --- Chroma DB Ayarı (ingest_all.py ile aynı olmalı) ---
 SINGLE_DB_PATH = "../chroma_db/all_courses_db"
 
-# --- Sayfa Ayarları ---
-st.set_page_config(
-    page_title="📘 DersBot AI Asistan", page_icon="🤖", layout="centered"
-)
 
 # --- CSS Tasarım (Visual Interface Styling) ---
 # Modern, minimalist ve estetik bir tasarım için CSS güncellendi
