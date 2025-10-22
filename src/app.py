@@ -218,7 +218,7 @@ st.markdown(
     </div>
     <div class="app-name">DersBot AI Asistan</div>
     <div class="app-info">
-        ⚠️ *Önemli Bilgilendirme:* DersBot Ai Asistanı hata yapabilir, doğruluğunu her zaman kendi kaynaklarınızdan kontrol etmeniz önerilir.
+        ⚠️ *Önemli Bilgilendirme:* DersBot Ai Asistanı hata yapabilir, doğruluğunu her zaman kendi kaynaklarınızdan kontrol etmeniz önerilir. Ayrıca notların eksik olabileceği ve her konuda bilgi veremeyeceğini göz önünde bulundurunuz.
     </div>
 </div>
 """,
