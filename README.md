@@ -9,7 +9,7 @@ Modern bir **Streamlit** arayüzüyle sunulur ve tam anlamıyla **LLM + Embeddin
 
 ## Deploy Link
 Uygulamayı hemen deneyin:
-👉 [DersBot AI’ı Aç](https://dersbotai.streamlit.app/)
+👉 (https://dersbotai.streamlit.app/)
 
 ---
 
@@ -90,7 +90,6 @@ DersBot, klasik RAG hattının tüm bileşenlerini uygular:
 
 ## ⚡ Kurulum ve Çalıştırma
 
-### 1. Depoyu klonla
 ```bash
 git clone https://github.com/busrasgkts15/DersBot.git
 cd DersBot
