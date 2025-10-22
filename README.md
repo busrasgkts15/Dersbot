@@ -7,6 +7,16 @@ Bu proje,Gitbookda oluşturmuş olduğum ders içeriklerini PDF formatında anal
 kullanıcının doğal dilde sorduğu sorulara **not bazlı, sade ve güvenilir** yanıtlar verir.
 Modern bir **Streamlit** arayüzüyle sunulur ve tam anlamıyla **LLM + Embedding + Vector DB** entegrasyonu içerir.
 
+## Deploy Link
+Uygulamayı hemen deneyin:
+👉 [DersBot AI’ı Aç](https://dersbotai.streamlit.app/)
+
+---
+
+## 🎥 Uygulama Tanıtımı
+
+<img src="assets/demo.gif" width="700">
+
 ---
 
 ## 🧠 RAG (Retrieval-Augmented Generation) Mimarisi
