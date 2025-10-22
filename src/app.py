@@ -11,9 +11,7 @@ import os.path
 import subprocess, sys, os, streamlit as st
 
 # --- Sayfa Ayarları ---
-st.set_page_config(
-    page_title="📘 DersBot AI Asistan", page_icon="🤖", layout="centered"
-)
+st.set_page_config(page_title="DersBot AI Asistan", page_icon="🤖", layout="centered")
 
 # if st.button("🧠 Veritabanını oluştur"):
 #     try:
