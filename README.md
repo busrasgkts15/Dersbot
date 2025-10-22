@@ -9,7 +9,7 @@ Modern bir **Streamlit** arayüzüyle sunulur ve tam anlamıyla **LLM + Embeddin
 
 ## Deploy Link
 Uygulamayı hemen deneyin:
-👉 (https://dersbotai.streamlit.app/)
+👉 https://dersbotai.streamlit.app/
 
 ## 🎥 Uygulama Tanıtımı
 
