@@ -38,7 +38,7 @@ api_key = os.getenv("GOOGLE_API_KEY")
 
 
 if not api_key:
-    st.error("❌ GOOGLE_API_KEY could not be found. Please check your .env file.")
+    st.error("❌ GOOGLE_API_KEY could not be found. Please check your .env env file.")
     st.stop()
 
 # --- Chroma DB Ayarı (ingest_all.py ile aynı olmalı) ---
@@ -57,7 +57,7 @@ st.markdown(
     font-family: 'Inter', sans-serif;
 }
 header, [data-testid="stHeader"], footer { visibility: hidden !important; }
-[data-testid="stSidebar"] { display: none; }
+/* stSidebar display: none kaldırıldı, artık ders seçimi görünecek */
 
 /* 2. Başlık Alanı (Ultra Minimalist) */
 .main-center-title {
@@ -80,7 +80,18 @@ header, [data-testid="stHeader"], footer { visibility: hidden !important; }
 .main-center-title .app-slogan {
     font-size: 1.1em;
     color: #6c757d; /* Açıklama metni rengi */
-    margin-bottom: 4rem;
+    margin-bottom: 1rem; /* Yeni açıklama için boşluk azaltıldı */
+}
+.main-center-title .app-info {
+    font-size: 0.9em;
+    color: #f97316; /* Turuncu uyarı rengi */
+    background-color: #fff7ed; /* Çok açık turuncu arka plan */
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #fed7aa;
+    max-width: 600px;
+    margin: 1.5rem auto 4rem auto; /* Alt tarafa daha fazla boşluk */
+    text-align: center;
 }
 
 /* 3. Soru Input Alanı ve Buton (Chat Girdisine Benzer Şekilde) */
@@ -192,6 +203,11 @@ div[data-testid*="stButton"] > button:hover {
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     border-radius: 8px;
 }
+/* 8. Ders Seçim Çubuğu Stili - Başlığa yakın konumlandırmak için */
+div[data-testid="stSelectbox"] {
+    max-width: 400px; /* Daha dar bir görünüm */
+    margin: 0 auto 2rem auto; /* Merkezle ve soru alanından ayır */
+}
 </style>
 """,
     unsafe_allow_html=True,
@@ -204,20 +220,24 @@ st.markdown(
     <div class="icon">
         📘
     </div>
-    <div class="app-name">DersBot</div>
+    <div class="app-name">DersBot AI Asistan</div>
     <div class="app-slogan">Sınav notlarından, sunumlardan ve ders kitaplarından anında bilgi alın.</div>
+    <div class="app-info">
+        ⚠️ **Önemli Bilgilendirme:** DersBot, yüklenmiş akademik notlarınız, sunumlarınız ve kitaplarınız kullanılarak oluşturulmuştur. 
+        Yanıtların doğruluğunu her zaman kendi kaynaklarınızdan kontrol etmeniz önerilir.
+    </div>
 </div>
 """,
     unsafe_allow_html=True,
 )
 
-# Ders Seçimi Yönetimi (Görsel sadelik için hala gizli)
+# Ders Seçimi Yönetimi
 if "selected_lesson" not in st.session_state:
     st.session_state.selected_lesson = "Sayısal Analiz"
 
-# Gizli Selectbox ile ders seçimini yönetelim
+# Ders Seçim Çubuğu, artık görünür etiketle
 selected_lesson = st.selectbox(
-    "Lütfen hangi dersle ilgili soru soracağınızı seçin:",
+    "Lütfen bir ders seçiniz:",  # Etiket güncellendi
     options=[
         "Sayısal Analiz",
         "Algoritma Analizi",
@@ -225,8 +245,8 @@ selected_lesson = st.selectbox(
         "İşletim Sistemleri",
     ],
     index=0,
-    label_visibility="collapsed",  # Varsayılan olarak gizlendi
-    key="lesson_selector_hidden",
+    label_visibility="visible",  # Görünür yapıldı
+    key="lesson_selector",  # Anahtarı değiştirdim
 )
 
 # 🔄 Ders değiştiğinde input'u sıfırla
