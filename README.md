@@ -11,8 +11,6 @@ Modern bir **Streamlit** arayüzüyle sunulur ve tam anlamıyla **LLM + Embeddin
 Uygulamayı hemen deneyin:
 👉 (https://dersbotai.streamlit.app/)
 
----
-
 ## 🎥 Uygulama Tanıtımı
 
 <img src="assets/demo.gif" width="700">
