@@ -15,20 +15,20 @@ st.set_page_config(
     page_title="📘 DersBot AI Asistan", page_icon="🤖", layout="centered"
 )
 
-if st.button("🧠 Veritabanını oluştur"):
-    try:
-        result = subprocess.run(
-            [sys.executable, "src/ingest_all.py"],
-            check=True,
-            capture_output=True,
-            text=True,
-            cwd=os.getcwd(),  # ekledik!
-        )
-        st.success("✅ Veritabanı başarıyla oluşturuldu!")
-        st.text(result.stdout)
-    except subprocess.CalledProcessError as e:
-        st.error(f"⚠️ Veritabanı oluşturulamadı! Hata kodu: {e.returncode}")
-        st.code(e.stderr)
+# if st.button("🧠 Veritabanını oluştur"):
+#     try:
+#         result = subprocess.run(
+#             [sys.executable, "src/ingest_all.py"],
+#             check=True,
+#             capture_output=True,
+#             text=True,
+#             cwd=os.getcwd(),  # ekledik!
+#         )
+#         st.success("✅ Veritabanı başarıyla oluşturuldu!")
+#         st.text(result.stdout)
+#     except subprocess.CalledProcessError as e:
+#         st.error(f"⚠️ Veritabanı oluşturulamadı! Hata kodu: {e.returncode}")
+#         st.code(e.stderr)
 
 
 # --- Ortam Değişkenleri ---
