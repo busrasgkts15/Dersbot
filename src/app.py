@@ -218,8 +218,7 @@ st.markdown(
     </div>
     <div class="app-name">DersBot AI Asistan</div>
     <div class="app-info">
-        ⚠️ **Önemli Bilgilendirme:** DersBot, yüklenmiş akademik notlarınız, sunumlarınız ve kitaplarınız kullanılarak oluşturulmuştur. 
-        Yanıtların doğruluğunu her zaman kendi kaynaklarınızdan kontrol etmeniz önerilir.
+        ⚠️ *Önemli Bilgilendirme:* DersBot Ai Asistanı hata yapabilir, doğruluğunu her zaman kendi kaynaklarınızdan kontrol etmeniz önerilir.
     </div>
 </div>
 """,
@@ -287,6 +286,7 @@ llm = ChatGoogleGenerativeAI(
 prompt_template = """
 Aşağıdaki bağlama göre soruyu yanıtla. Akademik ama sade bir dil kullan.
 Eğer bağlamda bilgi yoksa kullanıcıya samimi bir şekilde bunu belirt. Sadece bağlamdaki bilgiye göre yanıt ver.
+Kullanıcıya notlar şeklinde bahset.
 
 Bağlam:
 {context}
@@ -412,7 +412,7 @@ if final_query and final_query.strip():
             st.markdown(
                 f"""
                 <div class='response-container'>
-                    <h4>🤖 DersBot Yanıtı</h4>
+                    <h4>🚀🚀🚀 DersBot Asistan Yanıtı</h4>
                     {result['result']}
                 </div>
                 """,
