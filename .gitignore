@@ -3,9 +3,6 @@
 
 #Kendi notlarımı açık olarak paylaşmamak için yalnızca işletim sistemleri dersine ait bir pdf örnek olarak ekledim
 
-algoritma_analizi
-mikroişlemciler
-sayisal_analiz
 
 
 venv/
@@ -16,7 +13,6 @@ chroma_db/
 
 
 data_images
-data/işletim_sistemleri/hw6.pdf
 
 data_runtime/
 

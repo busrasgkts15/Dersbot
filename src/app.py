@@ -8,32 +8,27 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 import os.path
 
-import subprocess
+import subprocess, sys, os, streamlit as st
 
 # --- Sayfa Ayarları ---
 st.set_page_config(
     page_title="📘 DersBot AI Asistan", page_icon="🤖", layout="centered"
 )
 
-# Eğer chroma veritabanı yoksa kullanıcıya oluşturma seçeneği sun
-if not os.path.exists("../chroma_db/all_courses_db"):
-    st.warning("❌ Database not found. Please create it before using the app.")
-
-    if st.button("🧠 Veritabanını oluştur"):
-        with st.spinner(
-            "Veritabanı oluşturuluyor... Bu işlem birkaç dakika sürebilir ⏳"
-        ):
-            try:
-                # ingest.py dosyasını çalıştır
-                subprocess.run(
-                    ["python", "src/ingest_all.py"], check=True, cwd=os.getcwd()
-                )
-                st.success(
-                    "✅ Veritabanı başarıyla oluşturuldu! Şimdi uygulamayı yeniden başlatabilirsiniz."
-                )
-            except subprocess.CalledProcessError as e:
-                st.error(f"⚠️ Veritabanı oluşturulamadı: {e}")
-        st.stop()  # App'i durdur, kullanıcı yeniden başlatsın
+if st.button("🧠 Veritabanını oluştur"):
+    try:
+        result = subprocess.run(
+            [sys.executable, "src/ingest_all.py"],
+            check=True,
+            capture_output=True,
+            text=True,
+            cwd=os.getcwd(),  # ekledik!
+        )
+        st.success("✅ Veritabanı başarıyla oluşturuldu!")
+        st.text(result.stdout)
+    except subprocess.CalledProcessError as e:
+        st.error(f"⚠️ Veritabanı oluşturulamadı! Hata kodu: {e.returncode}")
+        st.code(e.stderr)
 
 
 # --- Ortam Değişkenleri ---
