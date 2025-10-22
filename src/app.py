@@ -45,173 +45,169 @@ if not api_key:
 SINGLE_DB_PATH = "chroma_db/all_courses_db"
 
 
-# --- CSS Tasarım (Visual Interface Styling) ---
-# Modern, minimalist ve estetik bir tasarım için CSS güncellendi
 st.markdown(
     """
 <style>
-/* 1. Genel Uygulama Temeli */
+/* === GENEL === */
 .stApp {
-    background-color: #f7f9fc; /* Çok açık mavi/gri arka plan (Yumuşak) */
+    background-color: #f7f9fc;
     color: #1a1a1a;
     font-family: 'Inter', sans-serif;
 }
 header, [data-testid="stHeader"], footer { visibility: hidden !important; }
-/* stSidebar display: none kaldırıldı, artık ders seçimi görünecek */
 
-/* 2. Başlık Alanı (Ultra Minimalist) */
+/* === BAŞLIK === */
 .main-center-title {
     text-align: center;
-    padding-top: 5rem;
-    padding-bottom: 2rem;
+    padding-top: 2.5rem; /* Daha az üst boşluk */
+    padding-bottom: 1.5rem;
 }
 .main-center-title .icon {
-    font-size: 3.5em; /* İkon büyüdü */
-    margin-bottom: 0.5rem;
-    color: #2563eb; /* Mavi ikon */
+    font-size: 3em;
+    margin-bottom: 0.3rem;
+    color: #2563eb;
 }
 .main-center-title .app-name {
-    font-size: 2.8em; /* Başlık büyüdü */
-    font-weight: 700; /* Daha kalın */
+    font-size: 2.4em;
+    font-weight: 700;
     color: #1a1a1a;
     margin-top: 0;
-    margin-bottom: 1rem;
-}
-.main-center-title .app-slogan {
-    font-size: 1.1em;
-    color: #6c757d; /* Açıklama metni rengi */
-    margin-bottom: 1rem; /* Yeni açıklama için boşluk azaltıldı */
+    margin-bottom: 0.8rem;
 }
 .main-center-title .app-info {
     font-size: 0.9em;
-    color: #f97316; /* Turuncu uyarı rengi */
-    background-color: #fff7ed; /* Çok açık turuncu arka plan */
-    padding: 0.75rem 1.5rem;
+    color: #f97316;
+    background-color: #fff7ed;
+    padding: 0.6rem 1.3rem;
     border-radius: 8px;
     border: 1px solid #fed7aa;
     max-width: 600px;
-    margin: 1.5rem auto 4rem auto; /* Alt tarafa daha fazla boşluk */
+    margin: 1rem auto 2.5rem auto;
     text-align: center;
 }
 
-/* 3. Soru Input Alanı ve Buton (Chat Girdisine Benzer Şekilde) */
+/* === DERS SEÇİMİ === */
+div[data-testid="stSelectbox"] {
+    max-width: 380px;
+    margin: 0 auto 1.2rem auto;
+}
+
+/* === INPUT ALANI === */
 div[data-testid="stTextInput"] {
     max-width: 760px;
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto 1rem auto; /* Daha az alt boşluk */
 }
 div[data-testid="stTextInput"] > div {
-    /* Genel konteyner stilini yeniden tasarla */
     border: none;
     border-radius: 12px;
-    padding: 0;
-    /* Daha derin, kaliteli gölge */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.3s ease, border 0.3s ease;
-    display: flex; /* Input ve Submit iconunu yan yana tutmak için */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    display: flex;
     align-items: center;
     background-color: #ffffff;
 }
 div[data-testid="stTextInput"] > div:focus-within {
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2), 0 0 0 2px #2563eb; /* Odaklandığında mavi gölge */
+    box-shadow: 0 0 0 2px #2563eb, 0 4px 10px rgba(37, 99, 235, 0.1);
 }
-
-/* YAZI VE PLACEHOLDER DÜZELTME KISMI */
 div[data-testid="stTextInput"] input {
-    flex-grow: 1; /* Input alanının çoğunu kapla */
-    font-size: 1.1em;
-    padding: 1.1rem 1.5rem; /* Daha kalın input */
-    color: #1a1a1a !important; /* Metin rengini kesinlikle siyah/koyu yap */
-    background-color: transparent; /* Beyaz arkaplanı üstten alsın */
+    flex-grow: 1;
+    font-size: 1.05em;
+    padding: 1rem 1.2rem;
+    color: #1a1a1a !important;
+    background-color: transparent;
     border: none !important;
 }
-/* Placeholder metin rengini daha belirgin gri yap */
 div[data-testid="stTextInput"] input::placeholder {
-    color: #9ca3af !important; 
+    color: #9ca3af !important;
 }
 
-
-/* 4. Örnek Soru Butonları */
+/* === ÖRNEK SORULAR === */
 .example-question-btn-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.8rem; /* Boşluk artırıldı */
-    margin-top: 1rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 2rem;
-}
-div[data-testid*="stButton"] > button {
-    background-color: #ffffff !important;
-    color: #3b82f6 !important; /* Mavi metin */
-    border: 1px solid #dbeafe !important; /* Açık mavi çerçeve */
-    border-radius: 20px !important; /* Daha yuvarlak */
-    padding: 0.6em 1.2em !important;
-    font-size: 0.9em !important;
-    font-weight: 500 !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-div[data-testid*="stButton"] > button:hover {
-    background-color: #eff6ff !important; /* Hafif mavi hover */
-    border-color: #93c5fd !important;
-}
-
-/* 5. Yanıt Kartı (Cevap Kartı) - Daha Yüksek Kaliteli Tasarım */
-.response-container {
-    margin-top: 2.5rem;
-    padding: 2.5rem; /* Dolgu artırıldı */
-    background-color: #ffffff; 
-    border-radius: 16px; /* Daha fazla yuvarlaklık */
-    /* Daha sofistike gölge */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
     max-width: 760px;
     margin-left: auto;
     margin-right: auto;
 }
-.response-container h4 {
-    color: #2563eb;
-    font-size: 1.4em;
-    margin-bottom: 1.5rem;
+div[data-testid*="stButton"] > button {
+    background-color: #ffffff !important;
+    color: #2563eb !important;
+    border: 1px solid #dbeafe !important;
+    border-radius: 18px !important;
+    padding: 0.55em 1.1em !important;
+    font-size: 0.9em !important;
+    font-weight: 500 !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+div[data-testid*="stButton"] > button:hover {
+    background-color: #eff6ff !important;
+    border-color: #93c5fd !important;
 }
 
-/* 6. Kod ve Vurgu Stilleri (Beyaz Tema Uyumlu) */
+/* === CEVAP BALONU === */
+.response-container {
+    margin-top: 1.5rem;
+    padding: 1.8rem;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 220px; /* sabit yükseklik ile balon boyutları eşitlendi */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.response-container h4 {
+    color: #2563eb;
+    font-size: 1.3em;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+.response-container p {
+    margin: 0;
+    line-height: 1.6;
+    color: #1f2937;
+}
+
+/* === ALERT (HATA) === */
+.stAlert {
+    background-color: #fff !important;
+    color: #1a1a1a !important;
+    border-left: 4px solid #f87171 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-radius: 8px;
+}
+
+/* === Kod ve Vurgu === */
 .stMarkdown code {
-    background-color: #eef2ff !important; /* Çok açık mavi arka plan */
-    color: #3b82f6 !important; /* Mavi metin */
+    background-color: #eef2ff !important;
+    color: #3b82f6 !important;
     padding: 3px 6px;
     border-radius: 6px;
     font-weight: 500;
 }
 .stCode {
-    background-color: #eef2ff !important; /* Açık mavi arka plan */
+    background-color: #eef2ff !important;
     border: 1px solid #dbeafe;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1rem;
     overflow-x: auto;
 }
 .stCode code {
-    color: #1a1a1a !important; 
-    background-color: transparent !important; /* İç kodu şeffaf yap */
-}
-
-/* 7. Hata Kutuları */
-.stAlert {
-    background-color: #fff !important;
     color: #1a1a1a !important;
-    border-left: 4px solid #f87171 !important; /* Kırmızı hata rengi */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    border-radius: 8px;
-}
-/* 8. Ders Seçim Çubuğu Stili - Başlığa yakın konumlandırmak için */
-div[data-testid="stSelectbox"] {
-    max-width: 400px; /* Daha dar bir görünüm */
-    margin: 0 auto 2rem auto; /* Merkezle ve soru alanından ayır */
+    background-color: transparent !important;
 }
 </style>
 """,
     unsafe_allow_html=True,
 )
+
 
 # --- Title Area (Başlık ve Slogan) ---
 st.markdown(
