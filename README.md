@@ -29,7 +29,7 @@ DersBot, klasik RAG hattının tüm bileşenlerini uygular:
 ### 2. ✂️ Metin Bölme (Text Chunking)
 - `RecursiveCharacterTextSplitter` kullanılarak uzun dokümanlar anlamlı parçalara ayrılır.
 - **Parametreler:**
-  - `chunk_size = 1500`
+  - `chunk_size = 800`
   - `chunk_overlap = 200`
 - Bu ayarlar, bağlam bütünlüğünü koruyarak en doğru bilgi eşleşmesini sağlar.
 
