@@ -69,7 +69,7 @@ def main():
     print(f"\n📑 Toplam {len(all_docs)} belge sayfası yüklendi.")
 
     # 2. Metin Parçalarına Ayır
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=200)
     all_chunks = text_splitter.split_documents(all_docs)
 
     print(f"📚 Toplam {len(all_chunks)} metin parçası oluşturuldu.")

@@ -7,8 +7,7 @@
 
 venv/
 .venv
-
-
+chroma_db
 
 
 data_images
